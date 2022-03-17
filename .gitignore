@@ -36,3 +36,4 @@ yarn-error.log*
 
 # additional
 package-lock.json
+lib/keys.js
