@@ -1,7 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import Navigation from "../components/Navigation";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Navigation />
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 export default MyApp;
