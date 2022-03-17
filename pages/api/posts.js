@@ -13,8 +13,8 @@ export default async function handler(req, res) {
     query: {
       type: "posts",
     },
-    props: "slug,title,content,metadata",
+    props: "slug,title,content,metadata,thumbnail",
   });
   const posts = await data.objects;
-  res.status(200).json({ posts });
+  res.status(200).json(posts);
 }
