@@ -1,11 +1,4 @@
-import Cosmic from "cosmicjs";
-
-const api = Cosmic();
-
-const postsBucket = api.bucket({
-  slug: process.env.POSTS_BUCKET,
-  read_key: process.env.READ_KEY,
-});
+import { postsBucket } from "../../../lib/postsBucket";
 
 export default async function handler(req, res) {
   const { id } = req.query;
