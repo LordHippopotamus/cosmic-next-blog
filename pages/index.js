@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { url } from "../lib/api";
+import Link from "next/link";
 
 export async function getStaticProps() {
   const res = await fetch(url.posts);
@@ -24,7 +25,9 @@ export default function Blog({ posts }) {
               <Card.Img variant="top" src={el.thumbnail} />
               <Card.Body>
                 <Card.Title>{el.title}</Card.Title>
-                <Button variant="primary">Read More</Button>
+                <Link href={"/posts/" + el.id} passHref>
+                  <Button variant="primary">Read More</Button>
+                </Link>
               </Card.Body>
             </Card>
           </Col>
