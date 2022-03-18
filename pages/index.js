@@ -3,15 +3,17 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { url } from "../lib/api";
 import Link from "next/link";
+import { postsBucket } from "../lib/postsBucket";
 
 export async function getStaticProps() {
-  const res = await fetch(url.posts);
-  const json = await res.json();
+  const { objects: posts } = await postsBucket.getObjects({
+    query: { type: "posts" },
+    props: "id,title,thumbnail",
+  });
 
   return {
-    props: { posts: json },
+    props: { posts },
   };
 }
 
