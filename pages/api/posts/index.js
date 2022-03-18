@@ -1,5 +1,5 @@
 import Cosmic from "cosmicjs";
-import { bucketSlug, readKey } from "../../lib/keys";
+import { bucketSlug, readKey } from "../../../lib/keys";
 
 const api = Cosmic();
 
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     query: {
       type: "posts",
     },
-    props: "slug,title,content,metadata,thumbnail",
+    props: "id,title,thumbnail",
   });
   const posts = await data.objects;
   res.status(200).json(posts);
