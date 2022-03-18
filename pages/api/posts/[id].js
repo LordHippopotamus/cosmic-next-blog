@@ -1,11 +1,10 @@
 import Cosmic from "cosmicjs";
-import { bucketSlug, readKey } from "../../../lib/keys";
 
 const api = Cosmic();
 
 const postsBucket = api.bucket({
-  slug: bucketSlug,
-  read_key: readKey,
+  slug: process.env.POSTS_BUCKET,
+  read_key: process.env.READ_KEY,
 });
 
 export default async function handler(req, res) {
