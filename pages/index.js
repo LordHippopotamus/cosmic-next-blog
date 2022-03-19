@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Link from "next/link";
+import Image from "next/image";
 import { postsBucket } from "../lib/postsBucket";
 
 export async function getStaticProps() {
@@ -24,7 +25,19 @@ export default function Blog({ posts }) {
         {posts.map((el) => (
           <Col xs={12} sm={6} md={4} lg={3} className="g-4" key={el.id}>
             <Card>
-              <Card.Img variant="top" src={el.thumbnail} />
+              <div
+                style={{
+                  position: "relative",
+                  height: 300,
+                }}
+              >
+                <Image
+                  src={el.thumbnail}
+                  alt="post thumbnail"
+                  layout="fill"
+                  className="card-img-top object-fit-cover"
+                />
+              </div>
               <Card.Body>
                 <Card.Title>{el.title}</Card.Title>
                 <Link href={"/posts/" + el.id} passHref>

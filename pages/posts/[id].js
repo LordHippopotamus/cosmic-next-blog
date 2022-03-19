@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/Container";
-import Image from "react-bootstrap/Image";
+import Image from "next/image";
 import { postsBucket } from "../../lib/postsBucket";
 
 export async function getStaticPaths() {
@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const post = await postsBucket.getObject({
     id: params.id,
-    props: "id,title,content,metadata,thumbnail",
+    props: "title,content,thumbnail",
   });
 
   return {
@@ -34,12 +34,24 @@ export default function Post({ post }) {
     <>
       <Container className="my-4">
         <h1>{post.title}</h1>
-        <Image
-          src={post.thumbnail}
-          alt="post image"
-          className="me-4 mb-4"
-          style={{ maxWidth: "40%", maxHeight: "50vh", float: "left" }}
-        />
+        <div
+          style={{
+            position: "relative",
+            maxWidth: "40%",
+            maxHeight: "50vh",
+            width: "100%",
+            height: "300px",
+            float: "left",
+          }}
+        >
+          <Image
+            src={post.thumbnail}
+            alt="post thumbnail"
+            layout="fill"
+            className="single-post-thumbnail me-4 mb-4"
+          />
+        </div>
+
         <span dangerouslySetInnerHTML={{ __html: post.content }} />
       </Container>
     </>

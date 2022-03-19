@@ -1,0 +1,8 @@
+.object-fit-cover {
+  object-fit: cover;
+}
+
+.single-post-thumbnail {
+  object-fit: cover;
+  max-width: 100%;
+}
