@@ -1,6 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Image from "next/image";
 import { bucket } from "../../lib/bucket";
+import Navigation from "../../components/Navigation";
 
 export async function getStaticPaths() {
   const { objects: posts } = await bucket.getObjects({
@@ -32,6 +33,7 @@ export async function getStaticProps({ params }) {
 export default function Post({ post }) {
   return (
     <>
+      <Navigation />
       <Container className="my-4">
         <h1>{post.title}</h1>
         <div
