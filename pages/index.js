@@ -14,15 +14,20 @@ export async function getStaticProps() {
     props: "id,title,thumbnail",
   });
 
+  const { objects: pages } = await bucket.getObjects({
+    query: { type: "pages" },
+    props: "id,title",
+  });
+
   return {
-    props: { posts },
+    props: { posts, pages },
   };
 }
 
-export default function Blog({ posts }) {
+export default function Blog({ posts, pages }) {
   return (
     <>
-      <Navigation />
+      <Navigation pages={pages} />
       <Container className="mb-4">
         <Row>
           {posts.map((el) => (

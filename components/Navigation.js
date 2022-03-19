@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Link from "next/link";
 
-export default function Navigation() {
+export default function Navigation({ pages }) {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -14,8 +14,13 @@ export default function Navigation() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Link href="/" passHref>
-              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link>Home</Nav.Link>
             </Link>
+            {pages.map((el) => (
+              <Link href={"/pages/" + el.id} passHref key={el.id}>
+                <Nav.Link>{el.title}</Nav.Link>
+              </Link>
+            ))}
           </Nav>
         </Navbar.Collapse>
       </Container>
