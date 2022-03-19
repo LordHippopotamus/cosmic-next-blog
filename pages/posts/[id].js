@@ -1,9 +1,9 @@
 import Container from "react-bootstrap/Container";
 import Image from "next/image";
-import { postsBucket } from "../../lib/postsBucket";
+import { bucket } from "../../lib/bucket";
 
 export async function getStaticPaths() {
-  const { objects: posts } = await postsBucket.getObjects({
+  const { objects: posts } = await bucket.getObjects({
     query: { type: "posts" },
     props: "id",
   });
@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const post = await postsBucket.getObject({
+  const post = await bucket.getObject({
     id: params.id,
     props: "title,content,thumbnail",
   });

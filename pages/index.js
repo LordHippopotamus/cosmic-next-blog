@@ -5,10 +5,10 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Link from "next/link";
 import Image from "next/image";
-import { postsBucket } from "../lib/postsBucket";
+import { bucket } from "../lib/bucket";
 
 export async function getStaticProps() {
-  const { objects: posts } = await postsBucket.getObjects({
+  const { objects: posts } = await bucket.getObjects({
     query: { type: "posts" },
     props: "id,title,thumbnail",
   });
