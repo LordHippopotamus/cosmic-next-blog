@@ -2,7 +2,6 @@
   object-fit: cover;
 }
 
-.single-post-thumbnail {
-  object-fit: cover;
+img {
   max-width: 100%;
 }
