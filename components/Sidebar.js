@@ -17,7 +17,12 @@ export default function Sidebar({ categories, tags }) {
         className="flex-column"
       >
         <Nav.Item className="m-2">
-          <Link href="/" passHref>
+          <Link
+            href={{
+              query: { category: null, tag },
+            }}
+            passHref
+          >
             <Nav.Link eventKey="all">All</Nav.Link>
           </Link>
         </Nav.Item>
@@ -42,7 +47,12 @@ export default function Sidebar({ categories, tags }) {
         style={{ gap: ".5rem" }}
       >
         <Nav.Item>
-          <Link href="/" passHref>
+          <Link
+            href={{
+              query: { tag: null, category },
+            }}
+            passHref
+          >
             <Nav.Link eventKey="all">All</Nav.Link>
           </Link>
         </Nav.Item>
