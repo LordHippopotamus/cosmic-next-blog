@@ -5,3 +5,19 @@
 img {
   max-width: 100%;
 }
+
+.nav-pills .nav-link {
+  color: rgba(0, 0, 0, 0.55) !important;
+}
+
+.nav-pills .nav-link:hover {
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.nav-pills .active {
+  color: #fff !important;
+}
+
+.nav-pills .active:hover {
+  color: #fff !important;
+}
