@@ -26,29 +26,47 @@ export async function getStaticProps() {
     props: "id,title",
   });
 
+  const { objects: tags } = await bucket.getObjects({
+    query: { type: "tags" },
+    props: "id,title",
+  });
+
   return {
-    props: { posts, pages, categories },
+    props: { posts, pages, categories, tags },
   };
 }
 
-export default function Blog({ posts, pages, categories }) {
+export default function Blog({ posts, pages, categories, tags }) {
   const router = useRouter();
-  const category = router.query.category;
+  const { category, tag } = router.query;
+
+  // console.log(posts);
 
   return (
     <>
       <Navigation pages={pages} />
       <Row>
         <Col sm={12} md={3} className="mt-4">
-          <Sidebar categories={categories} />
+          <Sidebar categories={categories} tags={tags} />
         </Col>
         <Col sm={12} md={9}>
           <Container className="mb-4">
             <Row>
               {posts
                 .filter((el) => {
+                  if (category && tag) {
+                    const isCategoryMatch =
+                      el.metadata.category.id === category;
+                    const isTagMatch = el.metadata.tags.find(
+                      (tagsEl) => tagsEl.id === tag
+                    );
+                    return isCategoryMatch && isTagMatch;
+                  }
                   if (category) {
                     return el.metadata.category.id === category;
+                  }
+                  if (tag) {
+                    return el.metadata.tags.find((tagsEl) => tagsEl.id === tag);
                   }
                   return true;
                 })
