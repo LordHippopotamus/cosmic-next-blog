@@ -11,7 +11,11 @@ export default function Sidebar({ categories, tags }) {
       style={{ height: "auto" }}
       className="flex-column bg-light border-top border-end border-bottom"
     >
-      <Nav variant="pills" defaultActiveKey="all" className="flex-column">
+      <Nav
+        variant="pills"
+        defaultActiveKey={category ? category : "all"}
+        className="flex-column"
+      >
         <Nav.Item className="m-2">
           <Link href="/" passHref>
             <Nav.Link eventKey="all">All</Nav.Link>
@@ -33,7 +37,7 @@ export default function Sidebar({ categories, tags }) {
       <hr className="my-0 mx-2" />
       <Nav
         variant="pills"
-        defaultActiveKey="all"
+        defaultActiveKey={tag ? tag : "all"}
         className="m-2"
         style={{ gap: ".5rem" }}
       >

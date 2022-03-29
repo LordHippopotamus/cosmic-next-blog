@@ -40,8 +40,6 @@ export default function Blog({ posts, pages, categories, tags }) {
   const router = useRouter();
   const { category, tag } = router.query;
 
-  // console.log(posts);
-
   return (
     <>
       <Navigation pages={pages} />
