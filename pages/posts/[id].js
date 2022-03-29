@@ -1,5 +1,6 @@
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
+import Link from "next/link";
 import { bucket } from "../../lib/bucket";
 import Navigation from "../../components/Navigation";
 
@@ -61,17 +62,34 @@ export default function Post({ post, pages }) {
 
         <div>
           category:{" "}
-          {post.metadata.category
-            ? post.metadata.category.title
-            : "no category"}
+          {post.metadata.category ? (
+            <Link
+              href={{
+                pathname: "/",
+                query: { category: post.metadata.category.id },
+              }}
+            >
+              <a>{post.metadata.category.title}</a>
+            </Link>
+          ) : (
+            "no category"
+          )}
         </div>
         <div>
           tags:{" "}
           {post.metadata.tags
-            ? post.metadata.tags.map(
-                (el, index, array) =>
-                  el.title + (array.length - 1 !== index ? " / " : "")
-              )
+            ? post.metadata.tags.map((el) => (
+                <span key={el.id}>
+                  <Link
+                    href={{
+                      pathname: "/",
+                      query: { tag: el.id },
+                    }}
+                  >
+                    <a>{el.title}</a>
+                  </Link>{" "}
+                </span>
+              ))
             : "no tags"}
         </div>
       </Container>
