@@ -5,7 +5,7 @@ import Navigation from "../components/Navigation";
 import Sidebar from "../components/Sidebar";
 import { useRouter } from "next/router";
 import PostsList from "../components/PostsList";
-import { filterPosts } from "../lib/filterPost";
+import { filterPosts } from "../lib/filterPosts";
 
 export async function getStaticProps() {
   const { objects: posts } = await bucket.getObjects({
